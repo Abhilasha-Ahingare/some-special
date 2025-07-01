@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Birthday Surprise</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- Background autoplay music (hidden) -->
+    <audio id="bgMusic" src="Happy Birthday – Guru Randhawa _ Sadhu S. Tiwari Ringtone - MobCup.Com.Co.mp3"
+        type="audio/mpeg" autoplay loop></audio>
+    <script>
+        // Ensure background audio auto-plays (for browsers that block autoplay, try to play on user interaction)
+        function tryPlayBgMusic() {
+            var bgMusic = document.getElementById('bgMusic');
+            if (bgMusic) {
+                bgMusic.muted = false;
+                bgMusic.volume = 1.0;
+                var playPromise = bgMusic.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(function () {
+                        var playAudio = function () {
+                            bgMusic.play();
+                            document.removeEventListener('click', playAudio);
+                            document.removeEventListener('keydown', playAudio);
+                            document.removeEventListener('touchstart', playAudio);
+                        };
+                        document.addEventListener('click', playAudio);
+                        document.addEventListener('keydown', playAudio);
+                        document.addEventListener('touchstart', playAudio);
+                    });
+                }
+            }
+        }
+        window.addEventListener('DOMContentLoaded', tryPlayBgMusic);
+        window.addEventListener('load', tryPlayBgMusic);
+    </script>
+
+    <!-- Background floating emojis -->
+    <div class="emoji-bg" id="emojiBg"></div>
+
+    <!-- 3D floating shapes -->
+    <div class="shape shape1"></div>
+    <div class="shape shape2"></div>
+    <div class="shape shape3"></div>
+
+    <!-- Progress bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <div class="container">
+        <!-- Screen 1: Welcome -->
+        <div class="screen active" id="screen1">
+            <div class="emoji-large animated-text">❤️</div>
+            <h1 class="title animated-text">Hey bestuuuu</h1>
+            <p class="subtitle animated-text">I made something special for you...</p>
+            <button class="button" onclick="nextScreen()">Let's Begin</button>
+        </div>
+
+        <!-- Screen 2 -->
+        <div class="screen" id="screen2">
+            <h1 class="title animated-text">Here's why you're incredible</h1>
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-emoji">✨</div>
+                    <h3 class="card-title">Your Kindness</h3>
+                    <p class="card-text">The way you care about others is truly inspiring. You have the biggest
+                        heart.You have a
+                        way of making people feel safe, loved, and truly valued.</p>
+                </div>
+                <div class="card">
+                    <div class="card-emoji">😊</div>
+                    <h3 class="card-title">Your Smile</h3>
+                    <p class="card-text">It lights up every room you enter and stays in my mind all day.</p>
+                </div>
+                <div class="card">
+                    <div class="card-emoji">🌟</div>
+                    <h3 class="card-title">Your Spirit</h3>
+                    <p class="card-text">Your passion and energy are contagious. You make life exciting!</p>
+                </div>
+                <div class="card">
+                    <div class="card-emoji">❤️</div>
+                    <h3 class="card-title">Your heart</h3>
+                    <p class="card-text">Your heart is so pure and genuine. You love deeply and care unconditionally.
+                        It’s rare to
+                        find someone as soft and trusting as you.</p>
+                </div>
+            </div>
+            <button class="button" onclick="nextScreen()">A Little Surprise</button>
+        </div>
+
+        <!-- Screen 3 -->
+        <div class="screen" id="screen3">
+            <div class="emoji-large animated-text">📷</div>
+            <h1 class="title animated-text">Remember When...</h1>
+            <div class="memory-image">
+                <div style="font-size: 4rem; margin-bottom: 10px;">👫</div>
+                <div>Our favorite memory together ladai wala part yaad karna 🤣</div>
+            </div>
+            <p class="memory-text animated-text"><img src="😍.jpg" alt=""></p>
+            <p class="subtitle animated-text">Every moment with you becomes a cherished memory. Whether we're laughing
+                together
+                or just enjoying the silence, time with you is always special.</p>
+            <button class="button" onclick="nextScreen()">One Last Thing</button>
+        </div>
+
+        <!-- Screen 4 -->
+        <div class="screen" id="screen4">
+            <div class="emoji-large animated-text">🎂</div>
+            <h1 class="title animated-text">My special Wish For You</h1>
+            <p class="final-message animated-text">
+                May your year be filled with joy, laughter, and dreams come true. May you always know how special you
+                are to me and to everyone lucky enough to know you. i'm so grateful to have you in my life bestuu. you
+                make everything better. you're the best and perfect jaise ho vaise humasha rahna, aise hi gussa karna
+                chid chide 🤭
+            </p>
+            <p class="heart-text animated-text" style="font-size: 1.3rem; margin: 20px 0;">Happy Birthday, ashuuuuu! ❤️
+            </p>
+            <button class="button" onclick="celebrate()">Celebrate!</button>
+            <p class="made-with-love">Made with ❤️ just for you</p>
+        </div>
+
+        <!-- Screen 5 -->
+        <div class="screen" id="screen5">
+            <div class="emoji-large animated-text">🎉</div>
+            <h1 class="title animated-text">once again Happy Birthday 😏!</h1>
+            <p class="subtitle animated-text">Hope your day is as amazing as you are! and mahakal ji always with you 😚
+            </p>
+            <button class="button" onclick="restart()">Start Over</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
